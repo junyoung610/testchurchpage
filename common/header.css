@@ -1,0 +1,294 @@
+@charset "UTF-8";
+
+/* 공통 클래스 */
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+/* Mobile-nav button visibility */
+.Mobile-nav {
+  position: relative;
+  z-index: 1000;
+}
+
+/* Active state for mobile-nav button */
+.Mobile-nav .active {
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+header {
+  background-color: #f8f9fa;
+}
+
+.header-wrap {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+}
+
+/* login style */
+.login {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  align-items: center;
+}
+
+.login a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.logo {
+  width: 220px;
+  height: 100px;
+  background: url(./img/gilchurch-logo.png) no-repeat 50% 50%;
+  background-size: contain;
+}
+
+/* Menu container */
+.menu-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-wrap i {
+  display: none;
+}
+
+/* Main menu style */
+.gnb > ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.gnb > ul > li {
+  position: relative;
+  text-align: center;
+}
+
+.gnb > ul > li > a {
+  display: block;
+  font-size: 20px;
+  padding: 15px 20px; /* 메뉴 크기 조정 */
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  position: relative;
+  z-index: 1;
+}
+
+/* 서브메뉴 */
+.sub-gnb {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  background: white;
+  z-index: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.gnb > ul > li:hover .sub-gnb {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 서브메뉴 배경을 a 크기에 맞춤 */
+.gnb > ul > li:hover > a::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* a 태그 바로 아래 */
+  left: 0;
+  border-top: 5px solid #000;
+  width: 100%;
+  height: 0;
+  z-index: -1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: height 0.3s ease;
+  height: auto; /* 서브메뉴 높이에 따라 동적으로 조정 */
+}
+
+.sub-gnb li {
+  list-style: none;
+  padding: 10px 0;
+}
+
+/* Submenu items */
+.sub-gnb li {
+  padding: 5px 10px;
+  background: #eee;
+  border: 1px solid #ddd;
+  border-right: none;
+  border-left: none;
+}
+
+.sub-gnb li a {
+  text-align: left;
+  font-weight: 600;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  font-size: 17px;
+}
+
+.sub-gnb li:hover {
+  background: #f8f9fa;
+}
+
+.sub-gnb li:hover a {
+  color: #007bff;
+}
+
+/* User-info for mobile */
+.user-info-M,
+.menu-wrap > a,
+.menu {
+  display: none;
+}
+
+/* Responsive styles */
+@media (max-width: 1100px) {
+  .inner {
+    width: 100%;
+  }
+
+  .user-info,
+  .login,
+  .gnb > ul > li > a {
+    display: none;
+  }
+
+  .menu-wrap > a {
+    pointer-events: none;
+  }
+
+  .menu-wrap > a,
+  .menu,
+  .menu-wrap i {
+    display: block;
+    font-weight: 600;
+    font-size: 1.6rem;
+  }
+
+  .menu {
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
+
+  .menu button {
+    border: none;
+    background: none;
+    padding: 30px;
+    cursor: pointer;
+    font-size: 2.2rem;
+  }
+
+  .user-info-M {
+    position: absolute;
+    top: 100%;
+    right: 0;
+  }
+
+  .gnb {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 50%;
+    height: 100vh;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 99;
+  }
+
+  .gnb.active {
+    display: block;
+    right: 0;
+  }
+
+  .gnb > ul {
+    flex-direction: column;
+    position: relative;
+    top: 20%;
+  }
+
+  .gnb > ul > li {
+    padding: 10px 30px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .sub-gnb {
+    position: static;
+    width: 100%;
+    padding: 0;
+    visibility: visible;
+    opacity: 1;
+    display: none;
+  }
+
+  .gnb > ul > li:hover .sub-gnb {
+    display: block;
+  }
+
+  .sub-gnb li {
+    padding: 10px;
+  }
+
+  .header-wrap::after {
+    display: none;
+  }
+
+  .sub-gnb li a {
+    text-align: left;
+  }
+
+  .Mobile-nav {
+    display: block;
+    position: absolute;
+    right: 0;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  body.dark-mode > #header > .inner > .header-wrap > .gnb {
+    background: #000;
+  }
+}
+
+/* Mobile menu icon */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  font-size: 30px;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>의정부길교회</title>
+    <link
+      rel="shortcut icon"
+      href="./common/img/gil-church.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/swiper.css" />
+    <link rel="stylesheet" href="./common/common.css" />
+    <link rel="stylesheet" href="./common/header.css" />
+
+    <link rel="stylesheet" href="./css/ChurcSermon.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/swiper.js" defer></script>
+  </head>
+  <body>
+    <header id="header"></header>
+
+    <main id="main">
+      <section class="inner link">
+        <a href="#"><i class="ri-home-4-line"></i></a>
+        <i class="ri-arrow-right-s-fill"></i>
+        <a href="#">말씀 · 찬양</a>
+        <i class="ri-arrow-right-s-fill"></i>
+        <a href="#">주일예배</a>
+      </section>
+
+      <section class="sermon-table inner" id="sermon-list">
+        <h2 class="section-title">주일예배</h2>
+
+        <ul id="sermon-body">
+          <!-- Data will be dynamically loaded here -->
+        </ul>
+        <div class="pagination" id="pagination"></div>
+      </section>
+
+      <section class="detail-view inner hidden" id="sermon-detail">
+        <h2 id="detail-title"></h2>
+        <div class="user-info">
+          <div class="user"></div>
+          <div class="date">
+            <span id="detail-author"></span>
+            <span id="detail-date"></span>
+          </div>
+        </div>
+
+        <section id="video-container"></section>
+        <section id="detail-content">이곳에 게시물 내용이 표시됩니다.</section>
+
+        <div class="file-download">
+          <h3>첨부파일</h3>
+
+          <ul id="file-list"></ul>
+        </div>
+
+        <a href="#" class="back-button" onclick="showList()">목록으로</a>
+      </section>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/Churchsermon.js"></script>
+  </body>
+</html>

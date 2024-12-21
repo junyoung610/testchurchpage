@@ -1,0 +1,45 @@
+// 상세 페이지 표시
+async function showDetail(id) {
+    const item = sermonData.find((sermon) => sermon.id === id);
+    if (!item) return;
+
+    // 상세 페이지로 이동
+    document.getElementById("sermon-list").style.display = "none";
+    document.getElementById("sermon-detail").style.display = "block";
+
+    document.getElementById("detail-title").textContent = item.title;
+    document.getElementById("detail-author").textContent = item.author;
+    document.getElementById("detail-date").textContent = item.date;
+
+    // TXT 파일 로드 및 표시
+    const contentElement = document.getElementById("detail-content");
+    try {
+        const response = await fetch(`../News/txt/${item.content}`);
+        if (!response.ok) {
+            throw new Error("TXT 파일을 로드하는 중 오류 발생");
+        }
+        const textContent = await response.text();
+        contentElement.innerHTML = textContent.replace(/\n/g, "<br>"); // 줄바꿈 처리
+    } catch (error) {
+        console.error("TXT 파일 로드 오류:", error);
+        contentElement.textContent = "설교 내용을 불러오는 중 오류가 발생했습니다.";
+    }
+
+    // 첨부파일 처리
+    const fileList = document.getElementById("file-list");
+    fileList.innerHTML = "";
+    if (item.files && item.files.length > 0) {
+        item.files.forEach((file) => {
+            const listItem = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = `../News/file/${file}`;
+            link.textContent = `${file}`;
+            link.download = file;
+            listItem.appendChild(link);
+            fileList.appendChild(listItem);
+        });
+    } else {
+        const noFiles = document.createElement("li");
+        noFiles.textContent = "첨부파일이 없습니다.";
+        fileList.appendChild(noFiles);
+    }

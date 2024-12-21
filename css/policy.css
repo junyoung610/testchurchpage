@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.policy h2 {
+  margin: 15px 0;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+}
+
+#policy-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.policy-box {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.policy-box strong {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.policy-box p {
+  margin-left: 10px;
+}
