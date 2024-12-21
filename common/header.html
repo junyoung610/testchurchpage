@@ -1,105 +1,108 @@
-<head>
-  <meta
-    http-equiv="Content-Security-Policy"
-    content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self';"
-  />
-</head>
-
-<div class="login inner">
-  <a class="login">로그인</a>
-  <a class="join">회원가입</a>
-</div>
-
-<div class="inner header">
-  <a class="logo" href="../index.html"></a>
-
-  <div class="header-wrap">
-    <!-- PC-nav -->
-    <nav class="gnb">
-      <ul>
-        <li>
-          <a href="">환영합니다</a>
-          <div class="menu-wrap">
-            <a href="">환영합니다</a>
-            <i class="ri-arrow-down-s-line"></i>
-          </div>
-          <ul class="sub-gnb">
-            <li><a href="#">인사말</a></li>
-            <li><a href="#">교회비전</a></li>
-            <li><a href="#">오시는 길</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="">소개합니다</a>
-          <div class="menu-wrap">
-            <a href="">소개합니다</a>
-            <i class="ri-arrow-down-s-line"></i>
-          </div>
-          <ul class="sub-gnb">
-            <li><a href="#">예배안내</a></li>
-            <li><a href="#">섬기는사람들</a></li>
-            <li><a href="#">새가족안내</a></li>
-            <li><a href="#">헌금안내</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="">말씀 · 찬양</a>
-          <div class="menu-wrap">
-            <a href="">말씀 · 찬양</a>
-            <i class="ri-arrow-down-s-line"></i>
-          </div>
-          <ul class="sub-gnb">
-            <li><a href="#">주일예배</a></li>
-            <li><a href="#">새벽예배</a></li>
-            <li><a href="#">수요예배</a></li>
-            <li><a href="#">금요기도회</a></li>
-            <li><a href="#">찬양</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="">다음세대</a>
-          <div class="menu-wrap">
-            <a href="">다음세대</a>
-            <i class="ri-arrow-down-s-line"></i>
-          </div>
-          <ul class="sub-gnb">
-            <li><a href="#">유·초등부</a></li>
-            <li><a href="#">중·고등부</a></li>
-            <li><a href="#">대학·청년부</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="">나눔</a>
-          <div class="menu-wrap">
-            <a href="">나눔</a>
-            <i class="ri-arrow-down-s-line"></i>
-          </div>
-          <ul class="sub-gnb">
-            <li><a href="../News.html">공지사항</a></li>
-            <li><a href="#">주보</a></li>
-            <li><a href="#">사진</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
-  <!-- Mobile-nav -->
-
-  <div class="Mobile-nav">
-    <div class="menu">
-      <button id="btn1" onclick="toggleMenu()">
-        <i class="ri-menu-fill"></i>
-      </button>
-      <button id="btn2" class="hidden" onclick="toggleMenu()">
-        <i class="ri-close-fill"></i>
-      </button>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="login inner">
+      <a class="login">로그인</a>
+      <a class="join">회원가입</a>
     </div>
-    <div class="user-info-M">
-      <a href="#">로그인</a>
-      <a href="#">회원가입</a>
+
+    <div class="inner header">
+      <a class="logo" href="../index.html"></a>
+
+      <div class="header-wrap">
+        <!-- PC-nav -->
+        <nav class="gnb">
+          <ul>
+            <li>
+              <a href="">환영합니다</a>
+              <div class="menu-wrap">
+                <a href="">환영합니다</a>
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+              <ul class="sub-gnb">
+                <li><a href="#">인사말</a></li>
+                <li><a href="#">교회비전</a></li>
+                <li><a href="#">오시는 길</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="">소개합니다</a>
+              <div class="menu-wrap">
+                <a href="">소개합니다</a>
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+              <ul class="sub-gnb">
+                <li><a href="#">예배안내</a></li>
+                <li><a href="#">섬기는사람들</a></li>
+                <li><a href="#">새가족안내</a></li>
+                <li><a href="#">헌금안내</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="">말씀 · 찬양</a>
+              <div class="menu-wrap">
+                <a href="">말씀 · 찬양</a>
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+              <ul class="sub-gnb">
+                <li><a href="#">주일예배</a></li>
+                <li><a href="#">새벽예배</a></li>
+                <li><a href="#">수요예배</a></li>
+                <li><a href="#">금요기도회</a></li>
+                <li><a href="#">찬양</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="">다음세대</a>
+              <div class="menu-wrap">
+                <a href="">다음세대</a>
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+              <ul class="sub-gnb">
+                <li><a href="#">유·초등부</a></li>
+                <li><a href="#">중·고등부</a></li>
+                <li><a href="#">대학·청년부</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="">나눔</a>
+              <div class="menu-wrap">
+                <a href="">나눔</a>
+                <i class="ri-arrow-down-s-line"></i>
+              </div>
+              <ul class="sub-gnb">
+                <li><a href="../News.html">공지사항</a></li>
+                <li><a href="#">주보</a></li>
+                <li><a href="#">사진</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <!-- Mobile-nav -->
+
+      <div class="Mobile-nav">
+        <div class="menu">
+          <button id="btn1" onclick="toggleMenu()">
+            <i class="ri-menu-fill"></i>
+          </button>
+          <button id="btn2" class="hidden" onclick="toggleMenu()">
+            <i class="ri-close-fill"></i>
+          </button>
+        </div>
+        <div class="user-info-M">
+          <a href="#">로그인</a>
+          <a href="#">회원가입</a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </body>
+</html>
