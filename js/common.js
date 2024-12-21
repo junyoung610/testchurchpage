@@ -4,19 +4,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadHeaderFooter() {
-  // 헤더 로드
   fetch("../common/header.html")
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) throw new Error("Header 파일 로드 실패");
+      return response.text();
+    })
     .then((data) => {
       document.getElementById("header").innerHTML = data;
-    });
+    })
+    .catch((error) => console.error("헤더 로드 에러:", error));
 
-  // 푸터 로드
   fetch("../common/footer.html")
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) throw new Error("Footer 파일 로드 실패");
+      return response.text();
+    })
     .then((data) => {
       document.getElementById("footer").innerHTML = data;
-    });
+    })
+    .catch((error) => console.error("푸터 로드 에러:", error));
 }
 
 function initializeDropdowns() {
