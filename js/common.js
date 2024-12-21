@@ -2,11 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
   loadHeaderFooter();
   initializeDropdowns();
 });
+document.addEventListener("DOMContentLoaded", () => {
+  loadHeaderFooter();
+});
 
 function loadHeaderFooter() {
-  fetch("../common/header.html")
+  const baseURL = "/testchurchpage/"; // repository-name을 GitHub 리포지토리 이름으로 변경
+  fetch(`${baseURL}common/header.html`)
     .then((response) => {
-      if (!response.ok) throw new Error("Header 파일 로드 실패");
+      if (!response.ok)
+        throw new Error(`Header 파일 로드 실패: ${response.status}`);
       return response.text();
     })
     .then((data) => {
@@ -14,9 +19,10 @@ function loadHeaderFooter() {
     })
     .catch((error) => console.error("헤더 로드 에러:", error));
 
-  fetch("../common/footer.html")
+  fetch(`${baseURL}common/footer.html`)
     .then((response) => {
-      if (!response.ok) throw new Error("Footer 파일 로드 실패");
+      if (!response.ok)
+        throw new Error(`Footer 파일 로드 실패: ${response.status}`);
       return response.text();
     })
     .then((data) => {
