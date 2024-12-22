@@ -70,20 +70,29 @@ function navigateToDetail(id) {
   showDetail(id);
 }
 
+function fixImagePaths(content) {
+  // 이미지 경로를 수정: src="/img/" 형태를 src="../News/img/" 형태로 변경
+  return content.replace(/src=['"]\/img\//g, 'src="../News/img/');
+}
+
 function showDetail(id) {
   const item = newsData.find((news) => news.id === id);
   if (!item) return;
 
+  // 상세 페이지로 이동
   document.getElementById("news-list").style.display = "none";
   document.getElementById("news-detail").style.display = "block";
 
   document.getElementById("detail-title").textContent = item.title;
   document.getElementById("detail-author").textContent = item.author;
   document.getElementById("detail-date").textContent = item.date;
+
+  // content에 포함된 이미지 경로 수정
   document.getElementById("detail-content").innerHTML = fixImagePaths(
     item.content
   );
 
+  // 첨부파일 처리
   const fileList = document.getElementById("file-list");
   fileList.innerHTML = "";
   if (item.files && item.files.length > 0) {
