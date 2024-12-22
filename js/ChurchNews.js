@@ -99,7 +99,7 @@ function showDetail(id) {
     item.files.forEach((file) => {
       const listItem = document.createElement("li");
       const link = document.createElement("a");
-      link.href = `../News/file/${file}`;
+      link.href = `./News/file/${file}`;
       link.textContent = `${file}`;
       link.download = file;
       listItem.appendChild(link);
