@@ -13,7 +13,7 @@ async function loadSermonData() {
       throw new Error(`HTTP 오류: ${response.status}`);
     }
 
-    const sermonData = await response.json(); // JSON 데이터 로드
+    sermonData = await response.json(); // JSON 데이터 로드
 
     // URL 해시 확인
     const hash = window.location.hash.substring(1);
