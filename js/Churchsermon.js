@@ -107,7 +107,7 @@ async function showDetail(id) {
   // TXT 파일 로드 및 표시
   const contentElement = document.getElementById("detail-content");
   try {
-    const response = await fetch(`../sermon/${item.content}`);
+    const response = await fetch(`./sermon/${item.content}`);
     if (!response.ok) {
       throw new Error("TXT 파일을 로드하는 중 오류 발생");
     }
@@ -125,7 +125,7 @@ async function showDetail(id) {
     item.files.forEach((file) => {
       const listItem = document.createElement("li");
       const link = document.createElement("a");
-      link.href = `../News/file/${file}`;
+      link.href = `./News/file/${file}`;
       link.textContent = `${file}`;
       link.download = file;
       listItem.appendChild(link);
