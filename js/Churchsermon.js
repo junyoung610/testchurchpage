@@ -107,7 +107,7 @@ async function showDetail(id) {
   // TXT 파일 로드 및 표시
   const contentElement = document.getElementById("detail-content");
   try {
-    const response = await fetch(`./sermon/${item.content}`);
+    const response = await fetch(`./Sermon/${item.content}`);
     if (!response.ok) {
       throw new Error("TXT 파일을 로드하는 중 오류 발생");
     }
