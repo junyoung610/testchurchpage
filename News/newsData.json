@@ -5,27 +5,25 @@
     "title": "2024년 12월 22일 주보",
     "author": "관리자",
     "date": "2024-12-21",
-    "content": "src='./News/img/newsletter/241222/newsletter1.jpg' alt='1'><img src='../News/img/newsletter/241222/newsletter2.jpg' alt='2'><img src='../News/img/newsletter/241222/newsletter3.jpg' alt='3'><img src='../News/img/newsletter/241222/newsletter4.jpg' alt='4'>",
+    "content": "<img src='./News/img/newsletter/241222/newsletter1.JPG' alt='1'><img src='../News/img/newsletter/241222/newsletter2.JPG' alt='2'><img src='../News/img/newsletter/241222/newsletter3.JPG' alt='3'><img src='../News/img/newsletter/241222/newsletter4.JPG' alt='4'>",
     "files": ["2024년 12월 22일 주보.pdf"]
   },
   {
     "id": 2,
-
     "no": 2,
     "title": "2025년 1~2월 주삶 구매 거래명세표",
     "author": "관리자",
     "date": "2024-12-21",
-    "content": "<p>주삶 2025년 1~2월호 거래명세표입니다.</p><p>거래명세서 파일을 함께 첨부하니 참고하여 주세요</p><img src='../News/img/2025QT.jpg' alt='1~2월호' >",
-    "files": ["거래명세표.pdf", "file5-2.jpg"]
+    "content": "<p>주삶 2025년 1~2월호 거래명세표입니다.</p><p>거래명세서 파일을 함께 첨부하니 참고하여 주세요</p><img src='../News/img/2025QT.JPG' alt='1~2월호' >",
+    "files": ["거래명세표.pdf", "file5-2.JPG"]
   },
   {
     "id": 1,
-
     "no": 1,
     "title": "VIP 축제에 여러분을 초대합니다.",
     "author": "관리자",
     "date": "2023-07-25",
-    "content": "<p>VIP 축제의 내용입니다.</p><img src='vip_event.jpg' alt='VIP 축제 포스터' style='max-width: 100%; height: auto;'>",
+    "content": "<p>VIP 축제의 내용입니다.</p><img src='vip_event.JPG' alt='VIP 축제 포스터' style='max-width: 100%; height: auto;'>",
     "file": ""
   }
 ]
