@@ -5,20 +5,28 @@ let currentPage = 1;
 // JSON 데이터 로드
 async function loadNewsData() {
   try {
-    const response = await fetch("../News/newsData.json"); // JSON 파일 경로
-    newsData = await response.json();
+    // GitHub Pages 환경에서 JSON 파일 경로 설정
+    const baseURL = "/testchurchpage/"; // repository-name을 실제 GitHub 리포지토리 이름으로 변경
+    const response = await fetch(`${baseURL}News/newsData.json`); // JSON 파일 경로
 
-    const hash = window.location.hash.substring(1); // URL 해시 확인
+    if (!response.ok) {
+      throw new Error(`HTTP 오류: ${response.status}`);
+    }
+
+    const newsData = await response.json(); // JSON 데이터 로드
+
+    // URL 해시 확인
+    const hash = window.location.hash.substring(1);
     if (hash.startsWith("news-")) {
       const id = parseInt(hash.replace("news-", ""), 10);
       if (!isNaN(id)) {
-        showDetail(id);
+        showDetail(id); // 특정 뉴스 상세 보기
         return;
       }
     }
 
-    renderTable(currentPage);
-    renderPagination();
+    renderTable(currentPage); // 뉴스 리스트 렌더링
+    renderPagination(); // 페이지네이션 렌더링
   } catch (error) {
     console.error("JSON 데이터를 로드하는 중 오류 발생:", error);
   }

@@ -5,24 +5,32 @@ let currentPage = 1;
 // 초기 데이터 로드
 async function loadSermonData() {
   try {
-    const response = await fetch("../json/sermonData.json"); // JSON 파일 경로
-    sermonData = await response.json();
+    // GitHub Pages 환경에서 JSON 파일 경로 설정
+    const baseURL = "/testchurchpage/"; // repository-name을 실제 GitHub 리포지토리 이름으로 변경
+    const response = await fetch(`${baseURL}json/sermonData.json`); // JSON 파일 경로
 
-    const hash = window.location.hash.substring(1); // URL 해시 확인
+    if (!response.ok) {
+      throw new Error(`HTTP 오류: ${response.status}`);
+    }
+
+    const sermonData = await response.json(); // JSON 데이터 로드
+
+    // URL 해시 확인
+    const hash = window.location.hash.substring(1);
     if (hash.startsWith("sermon-")) {
       const id = parseInt(hash.replace("sermon-", ""), 10);
       if (!isNaN(id)) {
-        showDetail(id);
+        showDetail(id); // 특정 설교 상세 보기
         return;
       }
     }
 
-    renderTable(currentPage);
-    renderPagination();
+    renderTable(currentPage); // 설교 리스트 렌더링
+    renderPagination(); // 페이지네이션 렌더링
   } catch (error) {
     console.error("JSON 데이터를 로드하는 중 오류 발생:", error);
     document.getElementById("sermon-body").innerHTML =
-      "데이터를 불러오는 중 오류가 발생했습니다.";
+      "데이터를 불러오는 중 오류가 발생했습니다."; // 사용자에게 오류 메시지 표시
   }
 }
 
