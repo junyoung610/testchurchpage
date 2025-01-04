@@ -7,6 +7,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadHeaderFooter() {
+  // 헤더 로드
+  fetch("../common/header.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("header").innerHTML = data;
+    });
+
+  // 푸터 로드
+  fetch("../common/footer.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("footer").innerHTML = data;
+    });
+}
+
+function loadHeaderFooter() {
   const baseURL = "/testchurchpage/"; // repository-name을 GitHub 리포지토리 이름으로 변경
   fetch(`${baseURL}common/header.html`)
     .then((response) => {
@@ -29,22 +45,6 @@ function loadHeaderFooter() {
       document.getElementById("footer").innerHTML = data;
     })
     .catch((error) => console.error("푸터 로드 에러:", error));
-}
-
-function loadHeaderFooter() {
-  // 헤더 로드
-  fetch("../common/header.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById("header").innerHTML = data;
-    });
-
-  // 푸터 로드
-  fetch("../common/footer.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById("footer").innerHTML = data;
-    });
 }
 
 // 초기 데이터 로드
