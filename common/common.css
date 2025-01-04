@@ -44,3 +44,25 @@ footer {
   font-weight: 500;
   font-size: 15px;
 }
+
+@media (max-width: 700px) {
+  .footer {
+    flex-direction: column;
+  }
+
+  .footer-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-content {
+    flex-direction: column-reverse;
+    gap: 5px;
+    font-size: 13px;
+    align-items: flex-start;
+  }
+  .copy {
+    font-size: 10px;
+    text-align: left;
+  }
+}

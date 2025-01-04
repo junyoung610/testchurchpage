@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.greeting {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.greeting-info {
+  font-weight: 400;
+  line-height: 2.1;
+  font-size: 19px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 70%;
+}
+
+.greeting-text {
+  padding: 25px;
+}
+
+.greeting-img {
+  background: #000;
+  width: 365px;
+  height: 440px;
+}

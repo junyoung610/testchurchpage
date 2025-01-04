@@ -34,6 +34,30 @@ async function loadSermonData() {
   }
 }
 
+// 초기 데이터 로드
+async function loadSermonData() {
+  try {
+    const response = await fetch("../json/sermonData.json"); // JSON 파일 경로
+    sermonData = await response.json();
+
+    const hash = window.location.hash.substring(1); // URL 해시 확인
+    if (hash.startsWith("sermon-")) {
+      const id = parseInt(hash.replace("sermon-", ""), 10);
+      if (!isNaN(id)) {
+        showDetail(id);
+        return;
+      }
+    }
+
+    renderTable(currentPage);
+    renderPagination();
+  } catch (error) {
+    console.error("JSON 데이터를 로드하는 중 오류 발생:", error);
+    document.getElementById("sermon-body").innerHTML =
+      "데이터를 불러오는 중 오류가 발생했습니다.";
+  }
+}
+
 // 테이블 렌더링
 function renderTable(page) {
   const startIndex = (page - 1) * itemsPerPage;
