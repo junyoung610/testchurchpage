@@ -1,9 +1,17 @@
+main#main {
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  padding: 20px 0; /* 상하 여백 추가 */
+}
+
 .login-container {
   background: #fff;
   padding: 30px 40px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   width: 320px;
+  /* margin: 0 auto; 속성은 main#main의 Flexbox 설정으로 제거됨 */
 }
 .login-container h2 {
   text-align: center;
