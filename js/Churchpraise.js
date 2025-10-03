@@ -121,7 +121,7 @@ async function showDetail(id) {
     contentElement.innerHTML = textContent.replace(/\n/g, "<br>");
   } catch (error) {
     console.error("TXT 파일 로드 오류:", error);
-    contentElement.textContent = "설교 내용을 불러오는 중 오류가 발생했습니다.";
+    contentElement.textContent = "내용을 불러오는 중 오류가 발생했습니다.";
   }
 
   // 첨부파일 처리
@@ -189,6 +189,3 @@ function searchpraises() {
   renderTable(currentPage);
   renderPagination();
 }
-
-// 초기 데이터 로드 코드는 HTML 파일의 DOMContentLoaded 이벤트에서 명시적으로 호출합니다.
-// loadpraiseData(); // <--- 이 부분이 제거됨

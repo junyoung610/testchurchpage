@@ -1,19 +1,19 @@
 [
   {
-    "id": 200830,
+    "id": 200906,
     "img": "<img src='./img/sermon.jpg' alt='sermon'>",
-    "no": 2,
-    "title": "누구에게 예배하십니까?",
+    "no": 3,
+    "title": "[전체]2020.09.06 주일오전예배",
     "author": "관리자",
-    "date": "2020-08-30",
-    "sermonId": "f2mxSwcuyw4",
-    "content": "./sermon200830.txt"
+    "date": "2020-09-06",
+    "sermonId": "WXgR01pRyUc",
+    "content": "./sermon200906.txt"
   },
   {
     "id": 200830,
     "img": "<img src='./img/sermon.jpg' alt='sermon'>",
     "no": 2,
-    "title": "누구에게 예배하십니까?",
+    "title": "[전체]2020.08.30 주일오전예배",
     "author": "관리자",
     "date": "2020-08-30",
     "sermonId": "f2mxSwcuyw4",
@@ -23,7 +23,7 @@
     "id": 200823,
     "img": "<img src='./img/sermon.jpg' alt='sermon'>",
     "no": 1,
-    "title": "2020.08.23 주일오전예배",
+    "title": "[전체]2020.08.23 주일오전예배",
     "author": "관리자",
     "date": "2020-08-23",
     "sermonId": "IdEjplAzZps",

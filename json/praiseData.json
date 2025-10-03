@@ -1,32 +1,32 @@
 [
   {
     "id": 200830,
-    "img": "<img src='./img/praise.jpg' alt='sermon'>",
+    "img": "<img src='./img/praise.jpg' alt='praise'>",
     "no": 2,
     "title": "누구에게 예배하십니까?",
     "author": "관리자",
     "date": "2020-08-30",
-    "sermonId": "f2mxSwcuyw4",
-    "content": "./sermon200830.txt"
+    "praiseId": "f2mxSwcuyw4",
+    "content": "./praise200830.txt"
   },
   {
     "id": 200830,
-    "img": "<img src='./img/praise.jpg' alt='sermon'>",
+    "img": "<img src='./img/praise.jpg' alt='praise'>",
     "no": 2,
     "title": "누구에게 예배하십니까?",
     "author": "관리자",
     "date": "2020-08-30",
-    "sermonId": "f2mxSwcuyw4",
-    "content": "./sermon200830.txt"
+    "praiseId": "f2mxSwcuyw4",
+    "content": "./praise200830.txt"
   },
   {
     "id": 200823,
-    "img": "<img src='./img/sermon.jpg' alt='sermon'>",
+    "img": "<img src='./img/praise.jpg' alt='praise'>",
     "no": 1,
-    "title": "2020.08.23 주일오전예배",
+    "title": "의정부길교회 [2021.08.29] 주일예배 찬양",
     "author": "관리자",
     "date": "2020-08-23",
-    "sermonId": "IdEjplAzZps",
-    "content": "./sermon200823.txt"
+    "praiseId": "a2nAA1fAIeA",
+    "content": "./praise210829.txt"
   }
 ]
