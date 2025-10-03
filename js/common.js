@@ -55,7 +55,7 @@ async function loadSermonData() {
       baseURL = "/testchurchpage/";
     }
 
-    const response = await fetch(`${baseURL}json/sermonData.json`);
+    const response = await fetch(`./json/sermonData.json`);
     sermonData = await response.json();
 
     renderTable(currentPage);
