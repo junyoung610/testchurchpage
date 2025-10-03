@@ -1,13 +1,11 @@
 /* -------------------------------
    전역 변수
 -------------------------------- */
-let sermonData = [];
-let currentPage = 1;
+// 설교 관련 전역 변수 (sermonData, currentPage) 및 함수 제거
 
 document.addEventListener("DOMContentLoaded", () => {
   loadHeaderFooter();
   initializeDropdowns();
-  loadSermonData(); // 초기 데이터 로드
   initMenuToggle(); // 메뉴 토글 초기화
 });
 
@@ -46,54 +44,6 @@ function loadHeaderFooter() {
 }
 
 /* -------------------------------
-   설교 데이터 로드
--------------------------------- */
-async function loadSermonData() {
-  try {
-    let baseURL = "./";
-    if (window.location.hostname.includes("github.io")) {
-      baseURL = "/testchurchpage/";
-    }
-
-    const response = await fetch(`./json/sermonData.json`);
-    sermonData = await response.json();
-
-    renderTable(currentPage);
-    renderPagination();
-  } catch (error) {
-    console.error("JSON 데이터를 로드하는 중 오류 발생:", error);
-    const body = document.getElementById("sermon-body");
-    if (body) body.innerHTML = "데이터를 불러오는 중 오류가 발생했습니다.";
-  }
-}
-
-/* -------------------------------
-   페이지네이션 출력
--------------------------------- */
-function renderPagination() {
-  const pagination = document.getElementById("pagination");
-  if (!pagination) return;
-
-  const itemsPerPage = 6;
-  const totalPages = Math.ceil(sermonData.length / itemsPerPage);
-
-  let buttons = "";
-  for (let i = 1; i <= totalPages; i++) {
-    buttons += `<button onclick="goToPage(${i})" ${
-      i === currentPage ? "class='active'" : ""
-    }>${i}</button>`;
-  }
-
-  pagination.innerHTML = buttons;
-}
-
-function goToPage(page) {
-  currentPage = page;
-  renderTable(page);
-  renderPagination();
-}
-
-/* -------------------------------
    드롭다운 메뉴
 -------------------------------- */
 function initializeDropdowns() {
@@ -104,17 +54,20 @@ function initializeDropdowns() {
         event.preventDefault();
         const parentLi = this.parentElement;
 
-        // 다른 드롭다운 닫기
-        document
-          .querySelectorAll("nav ul li.has-dropdown")
-          .forEach((otherLi) => {
-            if (otherLi !== parentLi) {
-              otherLi.classList.remove("active");
-            }
-          });
+        // PC 모드에서만 실행 (모바일 메뉴는 initMenuToggle에서 처리)
+        if (window.innerWidth > 1100) {
+          // 다른 드롭다운 닫기
+          document
+            .querySelectorAll("nav ul li.has-dropdown")
+            .forEach((otherLi) => {
+              if (otherLi !== parentLi) {
+                otherLi.classList.remove("active");
+              }
+            });
 
-        // 현재 메뉴 토글
-        parentLi.classList.toggle("active");
+          // 현재 메뉴 토글
+          parentLi.classList.toggle("active");
+        }
       });
     });
 }
@@ -123,26 +76,58 @@ function initializeDropdowns() {
    모바일 GNB 토글
 -------------------------------- */
 function initMenuToggle() {
-  const menuButton = document.querySelector(".menu-button");
+  const btn1 = document.getElementById("btn1"); // 메뉴 아이콘
+  const btn2 = document.getElementById("btn2"); // 닫기 아이콘
   const gnb = document.querySelector(".gnb");
   const body = document.body;
 
-  if (menuButton && gnb) {
-    menuButton.addEventListener("click", () => {
-      gnb.classList.toggle("active");
-      body.classList.toggle("no-scroll");
-    });
+  function toggleMenu() {
+    gnb.classList.toggle("active");
+    body.classList.toggle("no-scroll");
+    btn1.classList.toggle("hidden");
+    btn2.classList.toggle("hidden");
   }
 
-  // gnb 내부 서브메뉴 토글
-  document.querySelectorAll(".gnb > ul > li > a").forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const subMenu = e.target.nextElementSibling;
-      if (subMenu && subMenu.classList.contains("sub-gnb")) {
-        e.preventDefault();
-        subMenu.style.display =
-          subMenu.style.display === "block" ? "none" : "block";
+  if (btn1 && btn2 && gnb) {
+    btn1.addEventListener("click", toggleMenu);
+    btn2.addEventListener("click", toggleMenu);
+
+    // 모바일 메뉴 서브메뉴 토글 로직
+    document.querySelectorAll(".gnb > ul > li").forEach((li) => {
+      // .menu-wrap은 header.html에 정의된 모바일 메뉴 클릭 영역
+      const menuWrap = li.querySelector(".menu-wrap");
+      const subGnb = li.querySelector(".sub-gnb");
+
+      if (menuWrap && subGnb) {
+        // 모바일 GNB에서는 .menu-wrap 클릭 시 서브메뉴 토글
+        menuWrap.addEventListener("click", (e) => {
+          if (window.innerWidth <= 1100) {
+            e.preventDefault();
+
+            // 다른 서브메뉴 닫기
+            document.querySelectorAll(".gnb .sub-gnb").forEach((otherSub) => {
+              if (otherSub !== subGnb) {
+                otherSub.style.display = "none";
+              }
+            });
+            // 현재 서브메뉴 토글
+            subGnb.style.display =
+              subGnb.style.display === "block" ? "none" : "block";
+          }
+        });
       }
     });
-  });
+
+    // PC 모드 복귀 시 서브메뉴가 항상 보이도록 설정 (CSS/JS 충돌 방지)
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1100) {
+        document.querySelectorAll(".gnb .sub-gnb").forEach((sub) => {
+          sub.style.display = "";
+        });
+        document.querySelectorAll(".gnb > ul > li").forEach((li) => {
+          li.classList.remove("active");
+        });
+      }
+    });
+  }
 }

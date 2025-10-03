@@ -190,5 +190,5 @@ function searchSermons() {
   renderPagination();
 }
 
-// 초기 데이터 로드
-loadSermonData();
+// 초기 데이터 로드 코드는 HTML 파일의 DOMContentLoaded 이벤트에서 명시적으로 호출합니다.
+// loadSermonData(); // <--- 이 부분이 제거됨

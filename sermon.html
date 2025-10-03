@@ -53,9 +53,7 @@
           <button onclick="searchSermons()">검색</button>
         </section>
 
-        <ul id="sermon-body">
-          <!-- Data will be dynamically loaded here -->
-        </ul>
+        <ul id="sermon-body"></ul>
         <div class="pagination" id="pagination"></div>
       </section>
 
@@ -86,5 +84,10 @@
 
     <script src="./js/common.js"></script>
     <script src="./js/Churchsermon.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadSermonData(); // 명시적으로 호출
+      });
+    </script>
   </body>
 </html>

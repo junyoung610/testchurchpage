@@ -52,9 +52,7 @@
               <th>작성시간</th>
             </tr>
           </thead>
-          <tbody id="news-body">
-            <!-- Data will be dynamically loaded here -->
-          </tbody>
+          <tbody id="news-body"></tbody>
         </table>
         <div class="pagination" id="pagination"></div>
       </section>
@@ -85,5 +83,10 @@
 
     <script src="./js/common.js"></script>
     <script src="./js/ChurchNews.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadNewsData(); // 명시적으로 호출
+      });
+    </script>
   </body>
 </html>

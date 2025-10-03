@@ -2,36 +2,7 @@ let newsData = [];
 const itemsPerPage = 5;
 let currentPage = 1;
 
-async function loadNewsData() {
-  try {
-    const baseURL = "/testchurchpage/";
-    const response = await fetch(
-      `${baseURL}News/newsData.json?cache-bust=${Date.now()}`
-    );
-
-    if (!response.ok) {
-      throw new Error(`HTTP 오류: ${response.status}`);
-    }
-
-    newsData = await response.json();
-
-    const hash = window.location.hash.substring(1);
-    if (hash.startsWith("news-")) {
-      const id = parseInt(hash.replace("news-", ""), 10);
-      if (!isNaN(id)) {
-        showDetail(id);
-        return;
-      }
-    }
-
-    renderTable(currentPage);
-    renderPagination();
-  } catch (error) {
-    console.error("JSON 데이터를 로드하는 중 오류 발생:", error);
-  }
-}
-
-// 초기 데이터 로드
+// 초기 데이터 로드 (중복 함수 정의 제거)
 async function loadNewsData() {
   try {
     const response = await fetch("./News/newsData.json"); // JSON 파일 경로
@@ -94,10 +65,7 @@ function navigateToDetail(id) {
   showDetail(id);
 }
 
-function fixImagePaths(content) {
-  // 이미지 경로를 수정: src="/img/" 형태를 src="../News/img/" 형태로 변경
-  return content.replace(/src=['"]\/img\//g, 'src="../News/img/');
-}
+// 이미지 경로 수정 함수는 newsData.json에서 이미 상대 경로를 사용하고 있으므로 제거
 
 function showDetail(id) {
   const item = newsData.find((news) => news.id === id);
@@ -111,10 +79,8 @@ function showDetail(id) {
   document.getElementById("detail-author").textContent = item.author;
   document.getElementById("detail-date").textContent = item.date;
 
-  // content에 포함된 이미지 경로 수정
-  document.getElementById("detail-content").innerHTML = fixImagePaths(
-    item.content
-  );
+  // content에 포함된 이미지 경로를 그대로 사용
+  document.getElementById("detail-content").innerHTML = item.content;
 
   // 첨부파일 처리
   const fileList = document.getElementById("file-list");
@@ -143,4 +109,4 @@ function showList() {
   renderTable(currentPage);
 }
 
-loadNewsData();
+// loadNewsData(); // <--- 이 부분이 제거됨
