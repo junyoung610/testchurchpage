@@ -86,4 +86,7 @@ a {
   .inner {
     width: 90%;
   }
+  html {
+    overflow-x: hidden;
+  }
 }
