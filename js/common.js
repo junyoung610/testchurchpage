@@ -1,12 +1,12 @@
 /* -------------------------------
    전역 변수
 -------------------------------- */
-// 설교 관련 전역 변수 (sermonData, currentPage) 및 함수 제거
+// 설교 관련 변수 제거
 
 document.addEventListener("DOMContentLoaded", () => {
   loadHeaderFooter();
   initializeDropdowns();
-  initMenuToggle(); // 메뉴 토글 초기화
+  // initMenuToggle(); // 헤더가 로드된 후 loadHeaderFooter 내부에서 호출
 });
 
 /* -------------------------------
@@ -28,6 +28,7 @@ function loadHeaderFooter() {
     })
     .then((data) => {
       document.getElementById("header").innerHTML = data;
+      initMenuToggle(); // <--- 헤더 요소가 DOM에 추가된 후 메뉴 토글 초기화
     })
     .catch((error) => console.error("헤더 로드 에러:", error));
 
@@ -76,6 +77,7 @@ function initializeDropdowns() {
    모바일 GNB 토글
 -------------------------------- */
 function initMenuToggle() {
+  // 버튼이 DOM에 로드된 후에 실행됨
   const btn1 = document.getElementById("btn1"); // 메뉴 아이콘
   const btn2 = document.getElementById("btn2"); // 닫기 아이콘
   const gnb = document.querySelector(".gnb");
