@@ -202,3 +202,29 @@ iframe {
 .sermon-search button:hover {
   background-color: #555;
 }
+
+@media (max-width: 900px) {
+  #sermon-body li {
+    width: 220px;
+    padding: 0;
+  }
+  .video-info {
+    font-size: 12px;
+  }
+  .user {
+    width: 30px;
+    height: 30px;
+    background-size: 20px;
+  }
+  .sermon-search {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .sermon-search input {
+    width: 150px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
