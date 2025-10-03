@@ -47,13 +47,13 @@ let currentPage = 1;
 
 async function loadSermonData() {
   try {
-    let baseURL = "./";
+    let = "./";
 
     if (window.location.hostname.includes("github.io")) {
       baseURL = "/testchurchpage/";
     }
 
-    const response = await fetch(`${baseURL}json/sermonData.json`);
+    const response = await fetch(`./json/sermonData.json`);
     sermonData = await response.json();
 
     const hash = window.location.hash.substring(1); // URL 해시 확인
