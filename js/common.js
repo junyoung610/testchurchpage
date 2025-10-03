@@ -1,39 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
   loadHeaderFooter();
   initializeDropdowns();
+  loadSermonData(); // 초기 데이터 로드
+  initMenuToggle(); // 메뉴 토글 초기화
 });
-document.addEventListener("DOMContentLoaded", () => {
-  loadHeaderFooter();
-});
 
-function loadHeaderFooter() {
-  // 헤더 로드
-  fetch("../common/header.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById("header").innerHTML = data;
-    });
-
-  // 푸터 로드
-  fetch("../common/footer.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById("footer").innerHTML = data;
-    });
-}
-
+/* -------------------------------
+   헤더/푸터 로드
+-------------------------------- */
 function loadHeaderFooter() {
   let baseURL = "";
 
-  // GitHub Pages에서 열릴 때만 repository 이름을 붙여줌
+  // GitHub Pages 환경이면 repository 이름 붙이기
   if (window.location.hostname.includes("github.io")) {
     baseURL = "/testchurchpage/";
   }
 
+  // 헤더
   fetch(`${baseURL}common/header.html`)
     .then((response) => {
-      if (!response.ok)
-        throw new Error(`Header 파일 로드 실패: ${response.status}`);
+      if (!response.ok) throw new Error(`Header 로드 실패: ${response.status}`);
       return response.text();
     })
     .then((data) => {
@@ -41,10 +27,10 @@ function loadHeaderFooter() {
     })
     .catch((error) => console.error("헤더 로드 에러:", error));
 
+  // 푸터
   fetch(`${baseURL}common/footer.html`)
     .then((response) => {
-      if (!response.ok)
-        throw new Error(`Footer 파일 로드 실패: ${response.status}`);
+      if (!response.ok) throw new Error(`Footer 로드 실패: ${response.status}`);
       return response.text();
     })
     .then((data) => {
@@ -53,17 +39,21 @@ function loadHeaderFooter() {
     .catch((error) => console.error("푸터 로드 에러:", error));
 }
 
-// 초기 데이터 로드
+/* -------------------------------
+   설교 데이터 로드
+-------------------------------- */
+let sermonData = [];
+let currentPage = 1;
+
 async function loadSermonData() {
   try {
     let baseURL = "./";
 
-    // GitHub Pages 환경이면 repository 경로 붙이기
     if (window.location.hostname.includes("github.io")) {
       baseURL = "/testchurchpage/";
     }
 
-    const response = await fetch("./json/sermonData.json");
+    const response = await fetch(`${baseURL}json/sermonData.json`);
     sermonData = await response.json();
 
     const hash = window.location.hash.substring(1); // URL 해시 확인
@@ -78,12 +68,15 @@ async function loadSermonData() {
     renderTable(currentPage);
     renderPagination();
   } catch (error) {
-    console.error("JSON 데이터를 로드하는 중 오류 발생:", error);
+    console.error("JSON 로드 오류:", error);
     document.getElementById("sermon-body").innerHTML =
       "데이터를 불러오는 중 오류가 발생했습니다.";
   }
 }
 
+/* -------------------------------
+   드롭다운 메뉴
+-------------------------------- */
 function initializeDropdowns() {
   document
     .querySelectorAll("nav ul li.has-dropdown > a")
@@ -92,10 +85,10 @@ function initializeDropdowns() {
         event.preventDefault();
         const parentLi = this.parentElement;
 
-        // 이전에 열린 메뉴 닫기
+        // 다른 드롭다운 닫기
         document
           .querySelectorAll("nav ul li.has-dropdown")
-          .forEach(function (otherLi) {
+          .forEach((otherLi) => {
             if (otherLi !== parentLi) {
               otherLi.classList.remove("active");
             }
@@ -107,36 +100,30 @@ function initializeDropdowns() {
     });
 }
 
-function toggleMenu() {
+/* -------------------------------
+   모바일 GNB 토글
+-------------------------------- */
+function initMenuToggle() {
+  const menuButton = document.querySelector(".menu-button");
   const gnb = document.querySelector(".gnb");
-  const gnbInfo = document.querySelector(".user-info-M");
-  const btn1 = document.getElementById("btn1");
-  const btn2 = document.getElementById("btn2");
+  const body = document.body;
 
-  gnb.classList.toggle("active");
-  gnbInfo.classList.toggle("active");
+  if (menuButton && gnb) {
+    menuButton.addEventListener("click", () => {
+      gnb.classList.toggle("active");
+      body.classList.toggle("no-scroll");
+    });
+  }
 
-  // 버튼 토글 (classList.toggle 사용으로 개선)
-  btn1.classList.toggle("hidden");
-  btn2.classList.toggle("block");
-}
-
-const menuButton = document.querySelector(".menu button");
-const gnb = document.querySelector(".gnb");
-const body = document.body;
-
-menuButton.addEventListener("click", () => {
-  gnb.classList.toggle("active");
-  body.classList.toggle("no-scroll");
-});
-
-document.querySelectorAll(".gnb > ul > li > a").forEach((link) => {
-  link.addEventListener("click", (e) => {
-    const subMenu = e.target.nextElementSibling;
-    if (subMenu && subMenu.classList.contains("sub-gnb")) {
-      e.preventDefault();
-      subMenu.style.display =
-        subMenu.style.display === "block" ? "none" : "block";
-    }
+  // gnb 내부 서브메뉴 토글
+  document.querySelectorAll(".gnb > ul > li > a").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const subMenu = e.target.nextElementSibling;
+      if (subMenu && subMenu.classList.contains("sub-gnb")) {
+        e.preventDefault();
+        subMenu.style.display =
+          subMenu.style.display === "block" ? "none" : "block";
+      }
+    });
   });
-});
+}
