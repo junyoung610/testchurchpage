@@ -240,10 +240,16 @@ iframe {
 }
 @media (max-width: 450px) {
   #sermon-body li {
-    width: 180px;
+    width: 165px;
     padding: 0;
   }
   strong {
     font-size: 14px;
+  }
+}
+@media (max-width: 350px) {
+  #sermon-body li {
+    width: 350px;
+    padding: 0;
   }
 }

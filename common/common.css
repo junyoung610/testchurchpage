@@ -95,4 +95,25 @@ a {
   html {
     overflow-x: hidden;
   }
+
+  .footer {
+    margin-top: 20px;
+  }
+
+  footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  footer .footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  footer .item {
+    flex-wrap: wrap;
+    justify-content: start;
+  }
 }

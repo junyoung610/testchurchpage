@@ -108,26 +108,4 @@
     width: 100%;
     height: 280px;
   }
-
-  footer {
-    margin-top: 20px;
-    font-size: 14px;
-  }
-
-  footer .footer-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  footer .footer-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  footer .item {
-    flex-wrap: wrap;
-    justify-content: start;
-  }
 }
