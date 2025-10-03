@@ -50,7 +50,7 @@ async function loadNewsData() {
     renderPagination();
   } catch (error) {
     console.error("JSON 데이터를 로드하는 중 오류 발생:", error);
-    document.getElementById("sermon-body").innerHTML =
+    document.getElementById("news-body").innerHTML =
       "데이터를 불러오는 중 오류가 발생했습니다.";
   }
 }
