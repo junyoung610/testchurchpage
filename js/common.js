@@ -1,3 +1,9 @@
+/* -------------------------------
+   전역 변수
+-------------------------------- */
+let sermonData = [];
+let currentPage = 1;
+
 document.addEventListener("DOMContentLoaded", () => {
   loadHeaderFooter();
   initializeDropdowns();
@@ -40,50 +46,25 @@ function loadHeaderFooter() {
 }
 
 /* -------------------------------
-   설교 데이터 테이블 출력
+   설교 데이터 로드
 -------------------------------- */
-function renderTable(page) {
-  const sermonBody = document.getElementById("sermon-body");
-  if (!sermonBody) {
-    console.error("#sermon-body 요소를 찾을 수 없습니다.");
-    return;
+async function loadSermonData() {
+  try {
+    let baseURL = "./";
+    if (window.location.hostname.includes("github.io")) {
+      baseURL = "/testchurchpage/";
+    }
+
+    const response = await fetch(`${baseURL}json/sermonData.json`);
+    sermonData = await response.json();
+
+    renderTable(currentPage);
+    renderPagination();
+  } catch (error) {
+    console.error("JSON 데이터를 로드하는 중 오류 발생:", error);
+    const body = document.getElementById("sermon-body");
+    if (body) body.innerHTML = "데이터를 불러오는 중 오류가 발생했습니다.";
   }
-
-  const itemsPerPage = 6; // 한 페이지에 보여줄 개수
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-
-  const currentItems = sermonData.slice(startIndex, endIndex);
-
-  if (currentItems.length === 0) {
-    sermonBody.innerHTML = "<p>등록된 설교가 없습니다.</p>";
-    return;
-  }
-
-  sermonBody.innerHTML = `
-    <table>
-      <thead>
-        <tr>
-          <th>번호</th>
-          <th>제목</th>
-          <th>날짜</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${currentItems
-          .map(
-            (item, index) => `
-          <tr>
-            <td>${startIndex + index + 1}</td>
-            <td><a href="#sermon-${item.id}">${item.title}</a></td>
-            <td>${item.date}</td>
-          </tr>
-        `
-          )
-          .join("")}
-      </tbody>
-    </table>
-  `;
 }
 
 /* -------------------------------
