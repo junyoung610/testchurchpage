@@ -40,38 +40,76 @@ function loadHeaderFooter() {
 }
 
 /* -------------------------------
-   설교 데이터 로드
+   설교 데이터 테이블 출력
 -------------------------------- */
-let sermonData = [];
-let currentPage = 1;
-
-async function loadSermonData() {
-  try {
-    let = "./";
-
-    if (window.location.hostname.includes("github.io")) {
-      baseURL = "/testchurchpage/";
-    }
-
-    const response = await fetch(`./json/sermonData.json`);
-    sermonData = await response.json();
-
-    const hash = window.location.hash.substring(1); // URL 해시 확인
-    if (hash.startsWith("sermon-")) {
-      const id = parseInt(hash.replace("sermon-", ""), 10);
-      if (!isNaN(id)) {
-        showDetail(id);
-        return;
-      }
-    }
-
-    renderTable(currentPage);
-    renderPagination();
-  } catch (error) {
-    console.error("JSON 로드 오류:", error);
-    document.getElementById("sermon-body").innerHTML =
-      "데이터를 불러오는 중 오류가 발생했습니다.";
+function renderTable(page) {
+  const sermonBody = document.getElementById("sermon-body");
+  if (!sermonBody) {
+    console.error("#sermon-body 요소를 찾을 수 없습니다.");
+    return;
   }
+
+  const itemsPerPage = 6; // 한 페이지에 보여줄 개수
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentItems = sermonData.slice(startIndex, endIndex);
+
+  if (currentItems.length === 0) {
+    sermonBody.innerHTML = "<p>등록된 설교가 없습니다.</p>";
+    return;
+  }
+
+  sermonBody.innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>날짜</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${currentItems
+          .map(
+            (item, index) => `
+          <tr>
+            <td>${startIndex + index + 1}</td>
+            <td><a href="#sermon-${item.id}">${item.title}</a></td>
+            <td>${item.date}</td>
+          </tr>
+        `
+          )
+          .join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+/* -------------------------------
+   페이지네이션 출력
+-------------------------------- */
+function renderPagination() {
+  const pagination = document.getElementById("pagination");
+  if (!pagination) return;
+
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(sermonData.length / itemsPerPage);
+
+  let buttons = "";
+  for (let i = 1; i <= totalPages; i++) {
+    buttons += `<button onclick="goToPage(${i})" ${
+      i === currentPage ? "class='active'" : ""
+    }>${i}</button>`;
+  }
+
+  pagination.innerHTML = buttons;
+}
+
+function goToPage(page) {
+  currentPage = page;
+  renderTable(page);
+  renderPagination();
 }
 
 /* -------------------------------
