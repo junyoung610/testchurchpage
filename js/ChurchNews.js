@@ -34,7 +34,7 @@ async function loadNewsData() {
 // 초기 데이터 로드
 async function loadNewsData() {
   try {
-    const response = await fetch("../News/newsData.json"); // JSON 파일 경로
+    const response = await fetch("./News/newsData.json"); // JSON 파일 경로
     newsData = await response.json();
 
     const hash = window.location.hash.substring(1); // URL 해시 확인
