@@ -205,7 +205,7 @@ iframe {
 
 @media (max-width: 900px) {
   #sermon-body li {
-    width: 210px;
+    width: 220px;
     padding: 0;
   }
   .video-info {
@@ -226,5 +226,14 @@ iframe {
     width: 150px;
     padding: 6px 10px;
     font-size: 12px;
+  }
+}
+@media (max-width: 450px) {
+  #sermon-body li {
+    width: 140px;
+    padding: 0;
+  }
+  strong {
+    font-size: 14px;
   }
 }
