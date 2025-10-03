@@ -1,46 +1,19 @@
 let sermonData = [];
+let filteredData = []; // 🔹 검색된 데이터 (기본은 전체 데이터)
 const itemsPerPage = 6;
 let currentPage = 1;
 
 // 초기 데이터 로드
 async function loadSermonData() {
   try {
-    // GitHub Pages 환경에서 JSON 파일 경로 설정
-    const baseURL = "/testchurchpage/"; // repository-name을 실제 GitHub 리포지토리 이름으로 변경
-    const response = await fetch(`${baseURL}json/sermonData.json`); // JSON 파일 경로
+    const response = await fetch("../json/sermonData.json"); // JSON 파일 로드
+    sermonData = await response.json();
 
-    if (!response.ok) {
-      throw new Error(`HTTP 오류: ${response.status}`);
-    }
-
-    sermonData = await response.json(); // JSON 데이터 로드
+    // 검색 결과 기본값 = 전체 데이터
+    filteredData = [...sermonData];
 
     // URL 해시 확인
     const hash = window.location.hash.substring(1);
-    if (hash.startsWith("sermon-")) {
-      const id = parseInt(hash.replace("sermon-", ""), 10);
-      if (!isNaN(id)) {
-        showDetail(id); // 특정 설교 상세 보기
-        return;
-      }
-    }
-
-    renderTable(currentPage); // 설교 리스트 렌더링
-    renderPagination(); // 페이지네이션 렌더링
-  } catch (error) {
-    console.error("JSON 데이터를 로드하는 중 오류 발생:", error);
-    document.getElementById("sermon-body").innerHTML =
-      "데이터를 불러오는 중 오류가 발생했습니다."; // 사용자에게 오류 메시지 표시
-  }
-}
-
-// 초기 데이터 로드
-async function loadSermonData() {
-  try {
-    const response = await fetch("../json/sermonData.json"); // JSON 파일 경로
-    sermonData = await response.json();
-
-    const hash = window.location.hash.substring(1); // URL 해시 확인
     if (hash.startsWith("sermon-")) {
       const id = parseInt(hash.replace("sermon-", ""), 10);
       if (!isNaN(id)) {
@@ -58,37 +31,42 @@ async function loadSermonData() {
   }
 }
 
-// 테이블 렌더링
+// 테이블 렌더링 (filteredData 기준)
 function renderTable(page) {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentData = sermonData.slice(startIndex, endIndex);
+  const currentData = filteredData.slice(startIndex, endIndex);
 
   const ul = document.getElementById("sermon-body");
   ul.innerHTML = "";
 
   currentData.forEach((item) => {
     const row = `
-            <li class="video-box" onclick="navigateToDetail(${item.id})">
-                ${item.img}
-                <b class="hidden">${item.id}</b>
-                <strong>${item.title}</strong>
-                <div class="video-info">
-                    <div class="user"></div>
-                    <div class="Writer">
-                        <p>${item.author}</p>
-                        <p>${item.date}</p>
-                    </div>
-                </div>
-            </li>
-        `;
+      <li class="video-box" onclick="navigateToDetail(${item.id})">
+          ${item.img}
+          <b class="hidden">${item.id}</b>
+          <strong>${item.title}</strong>
+          <div class="video-info">
+              <div class="user"></div>
+              <div class="Writer">
+                  <p>${item.author}</p>
+                  <p>${item.date}</p>
+              </div>
+          </div>
+      </li>
+    `;
     ul.innerHTML += row;
   });
+
+  // 검색 결과 없을 때
+  if (currentData.length === 0) {
+    ul.innerHTML = `<li style="text-align:center; padding:20px;">검색 결과가 없습니다.</li>`;
+  }
 }
 
 // 페이지네이션 렌더링
 function renderPagination() {
-  const totalPages = Math.ceil(sermonData.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const pagination = document.getElementById("pagination");
   pagination.innerHTML = "";
 
@@ -102,7 +80,7 @@ function renderPagination() {
 
 // 페이지 변경
 function changePage(page) {
-  const totalPages = Math.ceil(sermonData.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   if (page < 1 || page > totalPages) return;
   currentPage = page;
   renderTable(page);
@@ -111,7 +89,7 @@ function changePage(page) {
 
 // 상세 페이지 이동
 function navigateToDetail(id) {
-  window.location.hash = `sermon-${id}`; // 해시 값을 #sermon-<id> 형태로 변경
+  window.location.hash = `sermon-${id}`;
   showDetail(id);
 }
 
@@ -120,7 +98,6 @@ async function showDetail(id) {
   const item = sermonData.find((sermon) => sermon.id === id);
   if (!item) return;
 
-  // 상세 페이지로 이동
   document.getElementById("sermon-list").style.display = "none";
   document.getElementById("sermon-detail").style.display = "block";
 
@@ -128,15 +105,13 @@ async function showDetail(id) {
   document.getElementById("detail-author").textContent = item.author;
   document.getElementById("detail-date").textContent = item.date;
 
-  // TXT 파일 로드 및 표시
+  // TXT 파일 로드
   const contentElement = document.getElementById("detail-content");
   try {
     const response = await fetch(`./Sermon/${item.content}`);
-    if (!response.ok) {
-      throw new Error("TXT 파일을 로드하는 중 오류 발생");
-    }
+    if (!response.ok) throw new Error("TXT 파일 로드 오류");
     const textContent = await response.text();
-    contentElement.innerHTML = textContent.replace(/\n/g, "<br>"); // 줄바꿈 처리
+    contentElement.innerHTML = textContent.replace(/\n/g, "<br>");
   } catch (error) {
     console.error("TXT 파일 로드 오류:", error);
     contentElement.textContent = "설교 내용을 불러오는 중 오류가 발생했습니다.";
@@ -150,7 +125,7 @@ async function showDetail(id) {
       const listItem = document.createElement("li");
       const link = document.createElement("a");
       link.href = `./News/file/${file}`;
-      link.textContent = `${file}`;
+      link.textContent = file;
       link.download = file;
       listItem.appendChild(link);
       fileList.appendChild(listItem);
@@ -161,34 +136,25 @@ async function showDetail(id) {
     fileList.appendChild(noFiles);
   }
 
-  // YouTube 동영상 표시
+  // YouTube 동영상
   const videoContainer = document.getElementById("video-container");
   videoContainer.innerHTML = `
-        <iframe src="https://www.youtube.com/embed/${item.sermonId}" 
-        title="YouTube video player - ${item.title}" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen></iframe>
-    `;
-}
-
-// 이미지 경로 수정
-function fixImagePaths(content) {
-  return content.replace(/src=['"]\/img\//g, 'src="../News/img/');
+    <iframe src="https://www.youtube.com/embed/${item.sermonId}" 
+      title="YouTube video player - ${item.title}" frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen></iframe>
+  `;
 }
 
 // 목록 보기
 function showList() {
-  window.location.hash = ""; // URL 해시 초기화
-
-  // 목록 페이지를 표시하고, 상세 페이지를 숨깁니다.
+  window.location.hash = "";
   document.getElementById("sermon-list").style.display = "block";
   document.getElementById("sermon-detail").style.display = "none";
-
-  // 목록 페이지를 렌더링
-  renderTable(currentPage); // 현재 페이지의 데이터를 다시 렌더링합니다.
+  renderTable(currentPage);
 }
 
-// URL 해시 변경 이벤트 처리
+// URL 해시 변경 이벤트
 window.addEventListener("hashchange", () => {
   const hash = window.location.hash.substring(1);
   if (hash.startsWith("sermon-")) {
@@ -200,6 +166,22 @@ window.addEventListener("hashchange", () => {
     showList();
   }
 });
+
+// 🔎 검색 기능
+function searchSermons() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+
+  filteredData = sermonData.filter(
+    (sermon) =>
+      sermon.title.toLowerCase().includes(input) ||
+      sermon.author.toLowerCase().includes(input) ||
+      (sermon.content && sermon.content.toLowerCase().includes(input))
+  );
+
+  currentPage = 1;
+  renderTable(currentPage);
+  renderPagination();
+}
 
 // 초기 데이터 로드
 loadSermonData();

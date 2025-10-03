@@ -43,6 +43,15 @@
 
       <section class="sermon-table inner" id="sermon-list">
         <h2 class="section-title">주일예배</h2>
+        <section class="sermon-search inner">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="검색어를 입력하세요"
+            onkeyup="searchSermons()"
+          />
+          <button onclick="searchSermons()">검색</button>
+        </section>
 
         <ul id="sermon-body">
           <!-- Data will be dynamically loaded here -->

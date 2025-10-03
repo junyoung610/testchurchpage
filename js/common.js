@@ -23,7 +23,13 @@ function loadHeaderFooter() {
 }
 
 function loadHeaderFooter() {
-  const baseURL = "/testchurchpage/"; // repository-name을 GitHub 리포지토리 이름으로 변경
+  let baseURL = "";
+
+  // GitHub Pages에서 열릴 때만 repository 이름을 붙여줌
+  if (window.location.hostname.includes("github.io")) {
+    baseURL = "/testchurchpage/";
+  }
+
   fetch(`${baseURL}common/header.html`)
     .then((response) => {
       if (!response.ok)
