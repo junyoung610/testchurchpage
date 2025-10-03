@@ -63,7 +63,7 @@ async function loadSermonData() {
       baseURL = "/testchurchpage/";
     }
 
-    const response = await fetch(`${baseURL}json/sermonData.json`);
+    const response = await fetch("./json/sermonData.json");
     sermonData = await response.json();
 
     const hash = window.location.hash.substring(1); // URL 해시 확인
@@ -140,3 +140,10 @@ document.querySelectorAll(".gnb > ul > li > a").forEach((link) => {
     }
   });
 });
+
+const searchBtn = document.getElementById("search");
+if (searchBtn) {
+  searchBtn.addEventListener("click", () => {
+    // 이벤트 처리
+  });
+}
