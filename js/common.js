@@ -56,7 +56,14 @@ function loadHeaderFooter() {
 // 초기 데이터 로드
 async function loadSermonData() {
   try {
-    const response = await fetch("../json/sermonData.json"); // JSON 파일 경로
+    let baseURL = "./";
+
+    // GitHub Pages 환경이면 repository 경로 붙이기
+    if (window.location.hostname.includes("github.io")) {
+      baseURL = "/testchurchpage/";
+    }
+
+    const response = await fetch(`${baseURL}json/sermonData.json`);
     sermonData = await response.json();
 
     const hash = window.location.hash.substring(1); // URL 해시 확인
