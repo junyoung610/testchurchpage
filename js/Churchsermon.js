@@ -6,7 +6,7 @@ let currentPage = 1;
 // 초기 데이터 로드
 async function loadSermonData() {
   try {
-    const response = await fetch("../json/sermonData.json"); // JSON 파일 로드
+    const response = await fetch("./json/sermonData.json"); // JSON 파일 로드
     sermonData = await response.json();
 
     // 검색 결과 기본값 = 전체 데이터
@@ -62,6 +62,13 @@ function renderTable(page) {
   if (currentData.length === 0) {
     ul.innerHTML = `<li style="text-align:center; padding:20px;">검색 결과가 없습니다.</li>`;
   }
+}
+
+const searchBtn = document.getElementById("search");
+if (searchBtn) {
+  searchBtn.addEventListener("click", () => {
+    // 이벤트 처리
+  });
 }
 
 // 페이지네이션 렌더링

@@ -140,10 +140,3 @@ document.querySelectorAll(".gnb > ul > li > a").forEach((link) => {
     }
   });
 });
-
-const searchBtn = document.getElementById("search");
-if (searchBtn) {
-  searchBtn.addEventListener("click", () => {
-    // 이벤트 처리
-  });
-}
