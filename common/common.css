@@ -88,16 +88,29 @@ a {
   border-bottom: 2px solid #0056b3;
 }
 
+footer {
+  background: #f5f5f5;
+}
+
+.footer {
+  margin-top: 20px;
+  padding: 20px 0;
+}
+
+.f-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
 @media (max-width: 900px) {
   .inner {
     width: 90%;
   }
   html {
     overflow-x: hidden;
-  }
-
-  .footer {
-    margin-top: 20px;
   }
 
   footer .footer-content {
@@ -115,5 +128,21 @@ a {
   footer .item {
     flex-wrap: wrap;
     justify-content: start;
+  }
+  .footer {
+    font-size: 12px;
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 330px) {
+  .footer {
+    font-size: 10px;
+  }
+
+  .f-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
   }
 }
