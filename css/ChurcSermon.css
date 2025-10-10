@@ -30,42 +30,6 @@ strong {
   gap: 10px;
 }
 
-.user {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #eee url(../img/icon/User_black.png) no-repeat 50% 50%;
-  background-size: 25px;
-}
-
-.detail-view h2 {
-  margin-top: 40px;
-  font-size: 26px;
-  font-weight: 500;
-  color: #333;
-}
-
-.user-info {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.user {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #eee url(../img/icon/User_black.png) no-repeat 50% 50%;
-  background-size: 25px;
-}
-
-.date {
-  display: flex;
-  flex-direction: column;
-}
-
 .comments {
   margin-top: 20px;
 }
