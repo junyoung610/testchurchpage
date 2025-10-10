@@ -39,6 +39,7 @@ strong {
 }
 
 .detail-view h2 {
+  margin-top: 40px;
   font-size: 26px;
   font-weight: 500;
   color: #333;
@@ -48,7 +49,7 @@ strong {
   display: flex;
   gap: 15px;
   align-items: center;
-  padding: 10px 0;
+  padding: 20px 0;
   border-bottom: 1px solid #ddd;
 }
 
@@ -154,9 +155,15 @@ strong {
 }
 
 #video-container {
+  padding-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#detail-content {
+  margin-top: 20px;
+  color: #444;
 }
 
 iframe {

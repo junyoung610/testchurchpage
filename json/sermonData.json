@@ -1,5 +1,15 @@
 [
   {
+    "id": 251005,
+    "img": "<img src='./img/sermon/251005.jpg' alt='sermon'>",
+    "no": 4,
+    "title": "[전체] 2025.10.05 주일오전예배",
+    "author": "관리자",
+    "date": "2025-10-06",
+    "sermonId": "_Lk7mR1rGWA",
+    "content": "./sermon251005.txt"
+  },
+  {
     "id": 200906,
     "img": "<img src='./img/sermon.jpg' alt='sermon'>",
     "no": 3,
