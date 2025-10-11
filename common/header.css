@@ -175,10 +175,6 @@ header {
 
 /* Responsive styles */
 @media (max-width: 1100px) {
-  .inner {
-    width: 100%;
-  }
-
   .header {
     align-items: center;
   }
