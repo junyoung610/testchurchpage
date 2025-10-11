@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.Vision {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vision_txt {
+  font-size: 24px;
+  color: #333;
+}
+
+.vision_txt ol {
+  list-style-type: decimal !important;
+  list-style-position: inside;
+  margin-left: 20px;
+}
+
+.vision_txt ol li {
+  list-style: decimal;
+}
+
+.vision_txt b {
+  font-weight: bold;
+  color: #0008ff;
+}
+
+.vision_img {
+  width: 50%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .Vision {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vision_txt {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 650px) {
+  .vision_txt {
+    font-size: 14px;
+  }
+}
