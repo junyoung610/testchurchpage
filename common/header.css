@@ -198,10 +198,11 @@ header {
   .menu-wrap i {
     display: block;
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
 
   .menu {
+    color: #000;
     display: block;
     position: relative;
     z-index: 100;
@@ -302,9 +303,22 @@ header {
   font-size: 30px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
+  .gnb.active {
+    right: 0;
+    font-size: 16px;
+    width: 300px;
+  }
+}
+
+@media (max-width: 610px) {
   .inner {
     width: 90%;
+  }
+
+  .gnb.active {
+    right: -25px;
+    width: 200px;
   }
   .menu-wrap > a,
   .menu,
