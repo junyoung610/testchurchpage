@@ -198,7 +198,6 @@ header {
   }
 
   .menu {
-    color: #000;
     display: block;
     position: relative;
     z-index: 100;
@@ -210,6 +209,10 @@ header {
     padding: 0 23.109px 0 0;
     cursor: pointer;
     font-size: 2.2rem;
+  }
+
+  .menu button i {
+    color: #333;
   }
 
   .user-info-M {
@@ -269,10 +272,6 @@ header {
     display: block;
   }
 
-  .sub-gnb li {
-    padding: 10px;
-  }
-
   .header-wrap::after {
     display: none;
   }
@@ -290,6 +289,21 @@ header {
   body.dark-mode > #header > .inner > .header-wrap > .gnb {
     background: #000;
   }
+
+  .sub-gnb li {
+    padding: 10px 0;
+    background: none;
+    border: none;
+  }
+  .sub-gnb {
+    box-shadow: none;
+  }
+  .sub-gnb li:hover {
+    background: none;
+  }
+  .sub-gnb li a:hover {
+    color: #343415;
+  }
 }
 
 /* Mobile menu icon */
@@ -301,7 +315,7 @@ header {
 
 @media (max-width: 800px) {
   .gnb.active {
-    right: 0;
+    right: -40px;
     font-size: 16px;
     width: 300px;
   }
