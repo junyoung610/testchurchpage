@@ -1,32 +1,12 @@
 [
   {
-    "id": 200830,
-    "img": "<img src='./img/praise.jpg' alt='praise'>",
-    "no": 2,
-    "title": "누구에게 예배하십니까?",
-    "author": "관리자",
-    "date": "2020-08-30",
-    "praiseId": "f2mxSwcuyw4",
-    "content": "./praise200830.txt"
-  },
-  {
-    "id": 200830,
-    "img": "<img src='./img/praise.jpg' alt='praise'>",
-    "no": 2,
-    "title": "누구에게 예배하십니까?",
-    "author": "관리자",
-    "date": "2020-08-30",
-    "praiseId": "f2mxSwcuyw4",
-    "content": "./praise200830.txt"
-  },
-  {
-    "id": 200823,
-    "img": "<img src='./img/praise.jpg' alt='praise'>",
+    "id": 251005,
+    "img": "<img src='./img/praise/251005.jpg' alt='praise251005'/>",
     "no": 1,
-    "title": "의정부길교회 [2021.08.29] 주일예배 찬양",
+    "title": "[의정부길교회] 25.10.05. 주일예배 찬양",
     "author": "관리자",
-    "date": "2020-08-23",
-    "praiseId": "a2nAA1fAIeA",
-    "content": "./praise210829.txt"
+    "date": "2025-10-06",
+    "praiseId": "lScp_OQ4ahY",
+    "content": "./praise251005.txt"
   }
 ]

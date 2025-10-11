@@ -146,6 +146,11 @@ strong {
   background-size: contain;
 }
 
+#detail-content {
+  margin-top: 20px;
+  color: #333;
+}
+
 /* 게시글 이미지 */
 #detail-content img {
   width: 100%;
@@ -154,6 +159,7 @@ strong {
 }
 
 #video-container {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
