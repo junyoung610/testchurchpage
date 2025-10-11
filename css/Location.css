@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+.location {
+  display: flex;
+  gap: 50px;
+}
+
+.map_img {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  width: 504px;
+  height: 310px;
+}
+
+.hide {
+  overflow: hidden;
+  padding: 7px 11px;
+  border: 1px solid #dfdfdf;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 2px 2px;
+  background-color: #f9f9f9;
+  width: 504px;
+}
+
+.kakao_logo {
+  float: left;
+  width: 72px;
+  height: 16px;
+}
+
+.map_info {
+  float: right;
+  position: relative;
+}
+
+.map_info a {
+  font-size: 12px;
+  text-decoration: none;
+  float: left;
+  height: 15px;
+  padding-top: 1px;
+  line-height: 15px;
+  color: #000;
+}
+
+.location_info {
+  font-size: 25px;
+}
+
+.location_info span {
+  color: #333;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .location {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .map_img {
+    width: 100%;
+    height: auto;
+  }
+  .hide {
+    width: 100%;
+  }
+  .location_info {
+    font-size: 15px;
+  }
+}
